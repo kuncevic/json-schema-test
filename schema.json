@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Property Management Schema",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "type": "object",
+      "properties": {
+        "propertyId": {
+          "type": "string",
+          "description": "Unique identifier for the property"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Street address of the property"
+            },
+            "city": {
+              "type": "string",
+              "description": "City where the property is located"
+            },
+            "state": {
+              "type": "string",
+              "description": "State where the property is located"
+            },
+            "zipCode": {
+              "type": "string",
+              "description": "ZIP code for the property"
+            }
+          },
+          "required": ["street", "city", "state", "zipCode"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of property (e.g., apartment, house)"
+        },
+        "bedrooms": {
+          "type": "integer",
+          "description": "Number of bedrooms in the property"
+        },
+        "bathrooms": {
+          "type": "integer",
+          "description": "Number of bathrooms in the property"
+        },
+        "rent": {
+          "type": "number",
+          "description": "Monthly rent amount for the property"
+        }
+      },
+      "required": ["propertyId", "address", "type", "bedrooms", "bathrooms", "rent"]
+    },
+    "tenants": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "description": "Unique identifier for the tenant"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the tenant"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the tenant"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the tenant"
+        },
+        "leaseId": {
+          "type": "string",
+          "description": "Reference to the lease associated with the tenant"
+        }
+      },
+      "required": ["tenantId", "name", "email"]
+    },
+    "leases": {
+      "type": "object",
+      "properties": {
+        "leaseId": {
+          "type": "string",
+          "description": "Unique identifier for the lease"
+        },
+        "propertyId": {
+          "type": "string",
+          "description": "Reference to the property being leased"
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "Reference to the tenant associated with the lease"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Start date of the lease"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date",
+          "description": "End date of the lease"
+        },
+        "monthlyRent": {
+          "type": "number",
+          "description": "Monthly rent amount specified in the lease"
+        }
+      },
+      "required": ["leaseId", "propertyId", "tenantId", "startDate", "endDate", "monthlyRent"]
+    }
+  },
+  "required": ["properties", "tenants", "leases"]
+}
